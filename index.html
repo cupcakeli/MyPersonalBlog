@@ -1,0 +1,1011 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Personal Blog</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+<style>
+/* =========================
+   LIGHT PINK COQUETTE THEME
+========================= */
+:root {
+    --cream: #A99A8A;
+    --blush: #8A6C55;
+    --pink: #6B3F22;
+    --rose: #432617;
+    --berry: #150C0C;
+    --text: #6a3a4a;
+    --white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 85px;
+}
+
+body {
+    margin: 0;
+    color: var(--text);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 19px;
+    line-height: 1.7;
+    background-color: var(--cream);
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            rgba(243,182,198,0.20) 0 22px,
+            transparent 22px 44px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            rgba(243,182,198,0.20) 0 22px,
+            transparent 22px 44px
+        );
+}
+
+a {
+    color: var(--berry);
+}
+
+a:focus-visible {
+    outline: 3px solid var(--rose);
+    outline-offset: 3px;
+}
+
+h1, h2 {
+    font-family: "Pinyon Script", "Brush Script MT", cursive;
+    font-weight: 400;
+    color: var(--rose);
+    line-height: 1.2;
+    margin: 0 0 0.5em;
+}
+
+h1 {
+    font-size: clamp(3.4rem, 8vw, 5.5rem);
+}
+
+h2 {
+    font-size: clamp(2.6rem, 6vw, 3.6rem);
+    text-align: center;
+}
+
+h2::after {
+    content: "";
+    display: block;
+    width: 85px;
+    height: 2px;
+    margin: 12px auto 0;
+    background: var(--pink);
+}
+
+h3, h4 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-weight: 600;
+    color: var(--berry);
+    margin: 0 0 0.5em;
+}
+
+h3 {
+    font-size: 1.9rem;
+}
+
+h4 {
+    font-size: 1.6rem;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+/* =========================
+   SECTION CARDS
+========================= */
+section {
+    max-width: 1050px;
+    margin: 2.5rem auto;
+    padding: 3rem 2rem;
+    background: rgba(255,248,244,0.96);
+    border: 3px double var(--pink);
+    border-radius: 22px;
+    scroll-margin-top: 85px;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    padding: 0.6rem 1.5rem;
+    background: var(--blush);
+    border-bottom: 3px dotted var(--rose);
+}
+
+.brand {
+    font-family: "Pinyon Script", cursive;
+    font-size: 2.2rem;
+    color: var(--rose);
+    text-decoration: none;
+}
+
+.topbar ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 0.8rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.topbar nav a {
+    display: inline-block;
+    padding: 0.2rem 0.9rem;
+    color: var(--berry);
+    text-decoration: none;
+    border-radius: 999px;
+    border: 2px solid transparent;
+}
+
+.topbar nav a:hover,
+.topbar nav a:focus-visible {
+    background: var(--white);
+    border-color: var(--pink);
+}
+
+/* =========================
+   SQUARE IMAGE FRAMES
+========================= */
+.photo-frame {
+    position: relative;
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+    background: var(--blush);
+    border: 6px solid var(--white);
+    border-radius: 15px;
+    outline: 3px dashed var(--pink);
+    outline-offset: 5px;
+    box-shadow: 0 6px 18px rgba(217,114,143,0.22);
+    overflow: hidden;
+}
+
+.photo-frame.small {
+    max-width: 210px;
+}
+
+.photo-frame img,
+.wide-frame img,
+.icon-slot img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slot {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--rose);
+    overflow-wrap: anywhere;
+}
+
+.slot b {
+    color: var(--berry);
+    font-size: 0.95rem;
+}
+
+/* =========================
+   HOME / INTRODUCTION
+========================= */
+.hero {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.hero .photo-frame {
+    justify-self: center;
+}
+
+.whisper {
+    margin-bottom: 0.5rem;
+    color: var(--rose);
+    font-style: italic;
+}
+
+/* =========================
+   ABOUT ME
+========================= */
+.info {
+    list-style: none;
+    margin: 0 auto 3rem;
+    padding: 1.2rem 1.6rem;
+    max-width: 600px;
+    background: var(--white);
+    border: 2px dotted var(--rose);
+    border-radius: 18px;
+}
+
+.info li {
+    padding: 0.15rem 0;
+}
+
+.info span {
+    display: inline-block;
+    min-width: 100px;
+    font-weight: 700;
+    color: var(--rose);
+}
+
+#about h3 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Each hobby has its own image and explanation */
+.hobby {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 2.5rem;
+    align-items: center;
+    margin-bottom: 3.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px dotted var(--pink);
+}
+
+.hobby:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+.hobby .photo-frame {
+    width: 100%;
+    max-width: 260px;
+}
+
+.hobby.flip {
+    grid-template-columns: 1fr 260px;
+}
+
+.hobby.flip .photo-frame {
+    order: 2;
+}
+
+/* =========================
+   BLOG POST
+========================= */
+.post {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: var(--white);
+    border: 2px dotted var(--pink);
+    border-radius: 22px;
+}
+
+.meta {
+    margin-bottom: 1.4rem;
+    font-style: italic;
+    color: var(--rose);
+}
+
+.wide {
+    margin: 0 0 1.8rem;
+}
+
+.wide-frame {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    background: var(--blush);
+    border: 6px solid var(--white);
+    border-radius: 16px;
+    outline: 3px dashed var(--pink);
+    outline-offset: 4px;
+    box-shadow: 0 6px 18px rgba(217,114,143,0.22);
+    overflow: hidden;
+}
+
+figcaption {
+    margin-top: 1rem;
+    text-align: center;
+    font-style: italic;
+    color: var(--berry);
+}
+
+/* =========================
+   PICTURES OF ME
+========================= */
+.trio {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    justify-items: center;
+    padding: 1rem 0;
+}
+
+.trio .photo-frame {
+    max-width: 240px;
+}
+
+/* =========================
+   FAVORITES
+========================= */
+.favs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+    margin: 0;
+}
+
+.favorite-card {
+    padding: 1.5rem;
+    background: var(--white);
+    border: 2px dotted var(--pink);
+    border-radius: 18px;
+    text-align: center;
+}
+
+.favorite-card .photo-frame {
+    max-width: 250px;
+    margin-bottom: 1.5rem;
+}
+
+.favorite-card h3 {
+    font-family: "Pinyon Script", cursive;
+    font-size: 2.3rem;
+    color: var(--rose);
+}
+
+.favorite-card p {
+    margin-bottom: 0;
+}
+
+/* =========================
+   CONTACT
+========================= */
+.contact-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    padding: 2.2rem 1.5rem;
+    background: var(--white);
+    border: 2px dotted var(--rose);
+    border-radius: 22px;
+}
+
+.contact-info {
+    text-align: center;
+}
+
+.icon-slot {
+    position: relative;
+    width: 85px;
+    height: 85px;
+    margin: 0 auto 1rem;
+    border: 3px solid var(--pink);
+    border-radius: 15px;
+    background: var(--blush);
+    overflow: hidden;
+}
+
+.icon-slot .slot {
+    font-size: 0.7rem;
+    padding: 0.3rem;
+}
+
+.mail {
+    font-size: 1.2rem;
+    overflow-wrap: anywhere;
+}
+
+/* =========================
+   HEARTFELT MESSAGE
+========================= */
+.message {
+    text-align: center;
+}
+
+.message blockquote {
+    max-width: 680px;
+    margin: 0 auto;
+    font-size: 1.5rem;
+    font-style: italic;
+}
+
+.signature {
+    margin-top: 1.2rem;
+    font-family: "Pinyon Script", cursive;
+    font-size: 2.3rem;
+    color: var(--rose);
+}
+
+/* =========================
+   FOOTER
+========================= */
+.site-footer {
+    margin-top: 2.5rem;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    background: var(--blush);
+    border-top: 3px dotted var(--rose);
+}
+
+.thanks {
+    margin: 0;
+    font-family: "Pinyon Script", cursive;
+    font-size: clamp(2.2rem, 6vw, 3.2rem);
+    color: var(--rose);
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+@media (max-width: 760px) {
+    section {
+        margin: 1.5rem 0.8rem;
+        padding: 2.5rem 1.2rem;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .hobby,
+    .hobby.flip {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+        text-align: center;
+    }
+
+    .hobby.flip .photo-frame {
+        order: 0;
+    }
+
+    .trio {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .favs {
+        grid-template-columns: 1fr;
+    }
+
+    .topbar {
+        justify-content: center;
+    }
+
+    .topbar ul {
+        justify-content: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============ NAVIGATION ============ -->
+<header class="topbar">
+    <a class="brand" href="#home">Cloud's Journal</a>
+
+    <nav aria-label="Main navigation">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#favorites">Favorites</a></li>
+            <li><a href="#contact">Email</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+<!-- ============ HOME ============ -->
+<section id="home" class="hero">
+
+    <div>
+        <p class="whisper">Welcome to my little corner of the internet</p>
+
+        <h1>Hello, I'm Eliza</h1>
+
+        <p>
+            I'm Eliza Celine S. Fugaban, a first-year Information
+            Technology student at Quezon City University. I'm at the
+            beginning of a journey filled with new knowledge, challenges,
+            and opportunities to discover what technology can do.
+        </p>
+
+        <p>
+            I'm especially interested in cybersecurity. I want to
+            understand how networks, operating systems, and applications
+            work, as well as how they can be protected from digital threats.
+            I'm fascinated by ethical hacking, information security,
+            and digital forensics.
+        </p>
+
+        <p>
+            My goal is to become a knowledgeable and responsible IT
+            professional who can help protect people's information,
+            investigate security incidents, and make digital spaces safer.
+            I hope to continue improving my programming, analytical
+            thinking, and problem-solving skills along the way.
+        </p>
+
+        <p>
+            Outside my studies, I'm someone who finds happiness in books,
+            music, coffee, baking, and the quiet beauty of everyday life.
+            This website is where I collect a few of my favorite things
+            and share little pieces of who I am.
+        </p>
+    </div>
+
+    <figure class="photo-frame">
+        <span class="slot">
+            Add your photo here
+            <br><b>hero-photo.jpg</b>
+        </span>
+        <img src="hero-photo.jpg" alt="Portrait of Eliza"
+             onerror="this.style.display='none'">
+    </figure>
+
+</section>
+
+<!-- ============ ABOUT ME ============ -->
+<section id="about">
+
+    <h2>About Me</h2>
+
+    <ul class="info">
+        <li><span>Name</span> Eliza Celine S. Fugaban</li>
+        <li><span>School</span> Quezon City University</li>
+        <li><span>Course</span> Bachelor of Science in Information Technology</li>
+        <li><span>Year</span> First Year</li>
+        <li><span>Career Goal</span> Cybersecurity</li>
+        <li><span>Interests</span> Technology, reading, music, and creativity</li>
+    </ul>
+
+    <h3>My Hobbies</h3>
+
+    <!-- JOURNALING -->
+    <article class="hobby">
+        <figure class="photo-frame">
+            <span class="slot">Add image:<br><b>hobby-journaling.jpg</b></span>
+            <img src="hobby-journaling.jpg" alt="Journaling"
+                 onerror="this.style.display='none'">
+        </figure>
+
+        <div>
+            <h4>Journaling</h4>
+            <p>
+                Journaling is my personal space for thoughts that are
+                sometimes difficult to say out loud. I enjoy writing about
+                my days, recording memories, and reflecting on my growth.
+                It helps me organize my thoughts and appreciate how much
+                I have learned about myself over time.
+            </p>
+        </div>
+    </article>
+
+    <!-- MUSIC -->
+    <article class="hobby flip">
+        <figure class="photo-frame">
+            <span class="slot">Add image:<br><b>hobby-music.jpg</b></span>
+            <img src="hobby-music.jpg" alt="Listening to music"
+                 onerror="this.style.display='none'">
+        </figure>
+
+        <div>
+            <h4>Listening to Music</h4>
+            <p>
+                Music makes ordinary moments feel meaningful. I love how
+                melodies and lyrics can express emotions that are hard
+                to explain. Whether I am studying, relaxing, or simply
+                daydreaming, music gives me comfort and makes every mood
+                feel a little less lonely.
+            </p>
+        </div>
+    </article>
+
+    <!-- BAKING -->
+    <article class="hobby">
+        <figure class="photo-frame">
+            <span class="slot">Add image:<br><b>hobby-baking.jpg</b></span>
+            <img src="hobby-baking.jpg" alt="Baking"
+                 onerror="this.style.display='none'">
+        </figure>
+
+        <div>
+            <h4>Baking</h4>
+            <p>
+                Baking is a comforting way for me to express creativity.
+                I enjoy following recipes, measuring ingredients, and
+                watching everything come together. It teaches me patience
+                and attention to detail, and I love being able to share
+                something homemade with other people.
+            </p>
+        </div>
+    </article>
+
+    <!-- GAMING -->
+    <article class="hobby flip">
+        <figure class="photo-frame">
+            <span class="slot">Add image:<br><b>hobby-games.jpg</b></span>
+            <img src="hobby-games.jpg" alt="Playing games"
+                 onerror="this.style.display='none'">
+        </figure>
+
+        <div>
+            <h4>Playing Games</h4>
+            <p>
+                Gaming gives me a chance to explore different worlds,
+                experience stories, and solve interesting challenges.
+                I enjoy the creativity and strategy involved in games.
+                They also remind me that curiosity and experimentation
+                are important, both in gaming and in learning technology.
+            </p>
+        </div>
+    </article>
+
+    <!-- READING -->
+    <article class="hobby">
+        <figure class="photo-frame">
+            <span class="slot">Add image:<br><b>hobby-reading.jpg</b></span>
+            <img src="hobby-reading.jpg" alt="Reading a book"
+                 onerror="this.style.display='none'">
+        </figure>
+
+        <div>
+            <h4>Reading</h4>
+            <p>
+                Reading allows me to step into different worlds and
+                understand perspectives beyond my own. I enjoy stories
+                that leave me thinking long after I finish them, especially
+                those that explore human nature, loneliness, identity,
+                and the meaning of life. Books make quiet moments feel full.
+            </p>
+        </div>
+    </article>
+
+</section>
+
+<!-- ============ BLOG ============ -->
+<section id="blog">
+
+    <h2>My Blog</h2>
+
+    <article class="post">
+
+        <h3>The Coffee I Keep Coming Back To</h3>
+
+        <p class="meta">A little entry from Eliza's journal</p>
+
+        <figure class="wide">
+            <div class="wide-frame">
+                <span class="slot">
+                    Add your coffee photo here
+                    <br><b>blog-coffee.jpg</b>
+                </span>
+                <img src="blog-coffee.jpg" alt="My cup of coffee"
+                     onerror="this.style.display='none'">
+            </div>
+
+            <figcaption>
+                A warm cup, a quiet moment, and nowhere else to be.
+            </figcaption>
+        </figure>
+
+        <p>
+            Some people have a routine; I have a cup of coffee. It is
+            the little ritual that helps me begin my day or settle into
+            a long evening of studying. There is something comforting
+            about holding a warm drink while the world outside feels
+            busy and unpredictable.
+        </p>
+
+        <p>
+            As a student, I spend plenty of time learning new concepts,
+            working on activities, and thinking about my future.
+            Sometimes, a simple coffee break is enough to help me slow
+            down and gather my thoughts before starting again.
+        </p>
+
+        <p>
+            I think these ordinary moments deserve to be remembered,
+            too. Not every meaningful memory has to be an extraordinary
+            event. Sometimes, happiness is just a good cup of coffee,
+            a favorite song, and a little time to myself.
+        </p>
+
+        <figcaption>
+            "A little warmth for a world that never stops moving."
+        </figcaption>
+
+    </article>
+
+</section>
+
+<!-- ============ PICTURES OF ME ============ -->
+<section id="pics">
+
+    <h2>Characters that summarize me</h2>
+
+    <p style="text-align:center;">
+        Get to know me better through these personas.
+    </p>
+
+    <div class="trio">
+
+        <figure class="photo-frame">
+            <span class="slot">Add image:<br><b>me-1.jpg</b></span>
+            <img src="me-1.jpg" alt="Eliza, photo one"
+                 onerror="this.style.display='none'">
+        </figure>
+
+        <figure class="photo-frame">
+            <span class="slot">Add image:<br><b>me-2.jpg</b></span>
+            <img src="me-2.jpg" alt="Eliza, photo two"
+                 onerror="this.style.display='none'">
+        </figure>
+
+        <figure class="photo-frame">
+            <span class="slot">Add image:<br><b>me-3.jpg</b></span>
+            <img src="me-3.jpg" alt="Eliza, photo three"
+                 onerror="this.style.display='none'">
+        </figure>
+
+    </div>
+
+</section>
+
+<!-- ============ FAVORITES ============ -->
+<section id="favorites">
+
+    <h2>My Favorite Things</h2>
+
+    <p style="text-align:center;">
+        The songs, places, stories, and little comforts that feel like me.
+    </p>
+
+    <div class="favs">
+
+        <!-- FAVORITE SONG -->
+        <article class="favorite-card">
+            <figure class="photo-frame">
+                <span class="slot">Add image:<br><b>favorite-song.jpg</b></span>
+                <img src="favorite-song.jpg" alt="Favorite song"
+                     onerror="this.style.display='none'">
+            </figure>
+            <h3>Favorite Song</h3>
+            <p><strong>Strangers</strong> by Ethel Cain</p>
+            <p>
+                I love the haunting atmosphere and emotional storytelling
+                of this song. Its sound stays with me, making it the kind
+                of music I can return to when I want something reflective
+                and deeply atmospheric.
+            </p>
+        </article>
+
+        <!-- FAVORITE DRINK -->
+        <article class="favorite-card">
+            <figure class="photo-frame">
+                <span class="slot">Add image:<br><b>favorite-coffee.jpg</b></span>
+                <img src="favorite-coffee.jpg" alt="Coffee"
+                     onerror="this.style.display='none'">
+            </figure>
+            <h3>Favorite Drink</h3>
+            <p><strong>Coffee</strong></p>
+            <p>
+                Coffee is one of my favorite everyday comforts.
+                I love the aroma, the quiet ritual of making a cup,
+                and the feeling of having a little moment to myself
+                before returning to the day.
+            </p>
+        </article>
+
+        <!-- FAVORITE ARTIST -->
+        <article class="favorite-card">
+            <figure class="photo-frame">
+                <span class="slot">Add image:<br><b>favorite-artist.jpg</b></span>
+                <img src="favorite-artist.jpg" alt="Lana Del Rey"
+                     onerror="this.style.display='none'">
+            </figure>
+            <h3>Favorite Artist</h3>
+            <p><strong>Lana Del Rey</strong></p>
+            <p>
+                I appreciate her cinematic sound, nostalgic atmosphere,
+                and distinctive storytelling. Her music often feels like
+                a scene from an old film, full of wistfulness, beauty,
+                and complicated emotions.
+            </p>
+        </article>
+
+        <!-- FAVORITE CITY -->
+        <article class="favorite-card">
+            <figure class="photo-frame">
+                <span class="slot">Add image:<br><b>favorite-city.jpg</b></span>
+                <img src="favorite-city.jpg" alt="Edinburgh, Scotland"
+                     onerror="this.style.display='none'">
+            </figure>
+            <h3>Favorite City</h3>
+            <p><strong>Edinburgh, Scotland</strong></p>
+            <p>
+                Edinburgh fascinates me with its historic architecture,
+                old streets, literary associations, and atmospheric
+                scenery. It is the kind of place I imagine exploring
+                slowly, with a book and a warm drink in hand.
+            </p>
+        </article>
+
+        <!-- FAVORITE SEASON -->
+        <article class="favorite-card">
+            <figure class="photo-frame">
+                <span class="slot">Add image:<br><b>favorite-fall.jpg</b></span>
+                <img src="favorite-fall.jpg" alt="Autumn scenery"
+                     onerror="this.style.display='none'">
+            </figure>
+            <h3>Favorite Season</h3>
+            <p><strong>Fall</strong></p>
+            <p>
+                I love the golden leaves, cool weather, cozy clothes,
+                and peaceful atmosphere associated with autumn.
+                Everything feels a little more nostalgic during this
+                season, making it perfect for reading, journaling,
+                and enjoying coffee.
+            </p>
+        </article>
+
+        <!-- FAVORITE MOVIE -->
+        <article class="favorite-card">
+            <figure class="photo-frame">
+                <span class="slot">Add image:<br><b>favorite-movie.jpg</b></span>
+                <img src="favorite-movie.jpg" alt="Favorite movie"
+                     onerror="this.style.display='none'">
+            </figure>
+            <h3>Favorite Movie</h3>
+            <p><strong>Everything Everywhere All at Once</strong></p>
+            <p>
+                I love how the movie combines imaginative storytelling
+                with questions about identity, family, choices, and
+                meaning. Beneath all its unusual worlds, it carries
+                a heartfelt reminder about kindness and connection.
+            </p>
+        </article>
+
+        <!-- FAVORITE AUTHOR -->
+        <article class="favorite-card">
+            <figure class="photo-frame">
+                <span class="slot">Add image:<br><b>favorite-author.jpg</b></span>
+                <img src="favorite-author.jpg" alt="Franz Kafka"
+                     onerror="this.style.display='none'">
+            </figure>
+            <h3>Favorite Author</h3>
+            <p><strong>Franz Kafka</strong></p>
+            <p>
+                Kafka's writing interests me because of its unsettling
+                atmosphere and exploration of alienation, identity,
+                anxiety, and the absurdity of existence. His stories
+                invite readers to think beyond the surface and question
+                the world around them.
+            </p>
+        </article>
+
+    </div>
+
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+
+    <h2>Contact Me</h2>
+
+    <p style="text-align:center;">
+        Thank you for taking the time to explore my little journal.
+        If you would like to reach out, you can contact me through email.
+    </p>
+
+    <div class="contact-card">
+
+        <figure class="photo-frame small">
+            <span class="slot">Add image:<br><b>contact-me.jpg</b></span>
+            <img src="contact-me.jpg" alt="A photo of Eliza"
+                 onerror="this.style.display='none'">
+        </figure>
+
+        <div class="contact-info">
+
+            <div class="icon-slot">
+                <span class="slot">Add icon:<br><b>contact-icon.png</b></span>
+                <img src="contact-icon.png" alt="Email icon"
+                     onerror="this.style.display='none'">
+            </div>
+
+            <h3>Let's Keep in Touch</h3>
+
+            <p>You can write to me at:</p>
+
+            <a class="mail"
+               href="mailto:fugabanelizaceline@gmail.com">
+                fugabanelizaceline@gmail.com
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ============ HEARTFELT MESSAGE ============ -->
+<section class="message">
+
+    <h2>A Little Note from Me</h2>
+
+    <blockquote>
+        Be gentle with the heart you carry. Even in a world that
+        sometimes feels cold and strange, I hope you never lose
+        your softness, your curiosity, or your ability to find
+        beauty in the smallest things. May you always find a little
+        light in the dark and a reason to keep dreaming.
+    </blockquote>
+
+    <p class="signature">With love, Eliza</p>
+
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+
+    <p class="thanks">Thank You for Visiting My Blog</p>
+
+    <p>
+        May you find comfort in your favorite stories,
+        warmth in the little things, and beauty in ordinary days.
+    </p>
+
+    <p>Made with love by Eliza Celine Fugaban.</p>
+
+    <p><a href="#home">Back to Top</a></p>
+
+</footer>
+
+</body>
+</html>
+
